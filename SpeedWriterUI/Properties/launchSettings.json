@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SpeedWriterUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SpeedWriterUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
