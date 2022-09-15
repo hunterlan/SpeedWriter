@@ -1,17 +1,9 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
+﻿using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
+using SpeedWriterLib.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,26 +15,45 @@ namespace SpeedWriterUI.Pages
     /// </summary>
     public sealed partial class TypeWritePage : Page
     {
-        private List<string> PreparedWords = new();
+        private List<string> _preparedWords;
+        private readonly TypeTestResult _typeTestResult = new();
         public string TextView;
 
         public TypeWritePage()
         {
             InitializeComponent();
-            BlockText.Background = TypeWriter.Background;
             PrepareWords();
-            TextView = string.Join(" ", PreparedWords);
+            TextView = string.Join(" ", _preparedWords);
         }
 
         private void PrepareWords()
         {
+            _preparedWords = new List<string>();
             var rand = new Random();
             var totalCount = App.WordHelper.Words.Count() - 1;
 
-            while (PreparedWords.Count < 2000)
+            while (_preparedWords.Count < 2000)
             {
                 int index = rand.Next(0, totalCount);
-                PreparedWords.Add(App.WordHelper.Words.ElementAt(index));
+                _preparedWords.Add(App.WordHelper.Words.ElementAt(index));
+            }
+        }
+
+        private void TypeWriter_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == Windows.System.VirtualKey.Space)
+            {
+                _typeTestResult.TotalWord++;
+                if (!TypeWriter.Text.Replace(" ", "").Equals(_preparedWords.First()))
+                {
+                    _typeTestResult.CountMistakes++;
+                }
+
+                _preparedWords.RemoveAt(0);
+                TextView = string.Join(" ", _preparedWords);
+                // TO-DO: Think about why bind doesn't update text.
+                TextTest.Text = TextView;
+                TypeWriter.Text = string.Empty;
             }
         }
     }

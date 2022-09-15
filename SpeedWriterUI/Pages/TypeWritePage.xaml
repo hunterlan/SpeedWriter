@@ -13,9 +13,18 @@
             <RowDefinition Height="400"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <Grid Name="BlockText"  Margin="16" Background="Beige" CornerRadius="5">
-            <TextBlock Text="{x:Bind TextView}" FontSize="48" TextWrapping="Wrap" Margin="8" TextTrimming="WordEllipsis"/>
+        <Grid Name="BlockText"  Margin="16" Background="{ThemeResource CardBackgroundFillColorDefault}" CornerRadius="5">
+            <TextBlock Name="TextTest" Text="{x:Bind TextView}" FontSize="48" TextWrapping="Wrap" Margin="8" TextTrimming="Clip"/>
         </Grid>
-        <TextBox Name="TypeWriter" Grid.Row="1" Margin="16"/>
+        <Grid Margin="16, 16, 0, 16" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition MaxWidth="75"/>
+                <ColumnDefinition MaxWidth="75"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="TypeWriter" Grid.Column="0" MinWidth="500" TextWrapping="Wrap" KeyUp="TypeWriter_KeyUp"/>
+            <TextBlock Name="TimerCount" Text="1:00" Grid.Column="1" MaxWidth="75" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Name="Reset" Content="Reset" Grid.Column="2" MaxWidth="75"/>
+        </Grid>
     </Grid>
 </Page>
