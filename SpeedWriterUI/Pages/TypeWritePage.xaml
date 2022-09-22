@@ -23,7 +23,7 @@
                 <ColumnDefinition MaxWidth="75"/>
             </Grid.ColumnDefinitions>
             <TextBox Name="TypeWriter" Grid.Column="0" MinWidth="500" TextWrapping="Wrap" KeyUp="TypeWriter_KeyUp"/>
-            <TextBlock Name="TimerCount" Text="1:00" Grid.Column="1" MaxWidth="75" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Name="TimerCount" Grid.Column="1" MaxWidth="75" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button Name="Reset" Content="Reset" Grid.Column="2" MaxWidth="75" Click="Reset_Click"/>
         </Grid>
     </Grid>

@@ -42,6 +42,7 @@ namespace SpeedWriterUI.Pages
             PrepareWords();
             TextView = string.Join(" ", _preparedWords);
             TextTest.Text = TextView;
+            TimerCount.Text = "1:00";
             SetTimer();
         }
 
@@ -76,7 +77,7 @@ namespace SpeedWriterUI.Pages
         private void PrepareWords()
         {
             _preparedWords = new List<string>();
-            var rand = new Random(456345);
+            var rand = new Random();
             var totalCount = App.WordHelper.Words.Count() - 1;
 
             while (_preparedWords.Count < 2000)
