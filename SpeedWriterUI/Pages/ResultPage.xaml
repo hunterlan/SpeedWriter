@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="SpeedWriterUI.Pages.ResultPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SpeedWriterUI.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="using:System"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="500"/>
+        </Grid.RowDefinitions>
+        <Grid Name="BlockText"  Margin="16" Background="{ThemeResource CardBackgroundFillColorDefault}" CornerRadius="5">
+            <TextBlock Name="TextTest" Text="Congratulations! You've done the test!" FontSize="48" TextWrapping="Wrap" Margin="8" TextTrimming="Clip" TextAlignment="Center"/>
+        </Grid>
+        <Grid Margin="10" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Background="{ThemeResource CardBackgroundFillColorDefault}" Margin="0, 0, 8, 0">
+                <StackPanel Margin="8, 8, 0, 0">
+                    <TextBlock Name="PointsCPM" FontSize="24" Text="{x:Bind sys:String.Format('CPM: {0}', CharPerMin)}"/>
+                    <TextBlock Name="AccuracyPoints" FontSize="24" Text="{x:Bind sys:String.Format('Accuracy: {0}%', Accuracy)}"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1" Background="{ThemeResource CardBackgroundFillColorDefault}" Margin="8, 0, 0, 0">
+                <TextBlock Text="Record table" FontSize="36" TextAlignment="Center"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

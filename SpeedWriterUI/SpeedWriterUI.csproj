@@ -13,6 +13,7 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Pages\ResultPage.xaml" />
     <None Remove="Pages\TypeWritePage.xaml" />
   </ItemGroup>
 
@@ -45,6 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SpeedWriterLib\SpeedWriterLib.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\ResultPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\TypeWritePage.xaml">

@@ -18,7 +18,7 @@ namespace SpeedWriterUI.Pages
     public sealed partial class TypeWritePage : Page
     {
         private List<string> _preparedWords;
-        private static readonly uint SecondsForTest = 60;
+        private const uint SecondsForTest = 60;
         private readonly TypeTestResult _typeTestResult = new();
         private readonly DispatcherQueue _queue;
         private DispatcherQueueTimer _timer, _stopWatcher;
@@ -71,7 +71,7 @@ namespace SpeedWriterUI.Pages
         private void OnTimeout(DispatcherQueueTimer sender, object args)
         {
             _stopWatcher.Stop();
-            throw new NotImplementedException();
+            ResultFrame.Navigate(typeof(ResultPage), _typeTestResult);
         }
 
         private void PrepareWords()
@@ -98,6 +98,7 @@ namespace SpeedWriterUI.Pages
 
             if (e.OriginalKey != Windows.System.VirtualKey.Space) return;
             _typeTestResult.TotalWord++;
+            _typeTestResult.TotalCharacters += TypeWriter.Text.Length - 1; //because space
             if (!TypeWriter.Text.Replace(" ", "").Equals(_preparedWords.First()))
             {
                 _typeTestResult.CountMistakes++;
