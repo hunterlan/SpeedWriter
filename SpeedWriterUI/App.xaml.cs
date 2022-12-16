@@ -44,13 +44,14 @@ namespace SpeedWriterUI
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
-            m_window.Activate();
+            StartupWindow = new MainWindow();
+            StartupWindow.Title = "SpeedWriter";
+            StartupWindow.Activate();
             WordHelper = new LoadWordHelper();
             CurrentUser = new User();
         }
 
-        private Window m_window;
+        public static Window StartupWindow;
         public static LoadWordHelper WordHelper;
         public static User CurrentUser;
     }

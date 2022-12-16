@@ -14,6 +14,8 @@ namespace SpeedWriterUI
         public MainWindow()
         {
             this.InitializeComponent();
+            ExtendsContentIntoTitleBar = true;
+            SetTitleBar(AppTitleBar);
         }
 
 
